@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980582347483",
+    "project_id": "salud-amigos-flutter",
+    "storage_bucket": "salud-amigos-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980582347483:android:3bead54e0466f2d39a92fe",
+        "android_client_info": {
+          "package_name": "com.example.salud_amigos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980582347483-o91rfptl24qebooe6dfucotmd7knd0gn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgCZ8FtZPRLCCYvukGSMwH5UuvHxwO3u8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980582347483-o91rfptl24qebooe6dfucotmd7knd0gn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
