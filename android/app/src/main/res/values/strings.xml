@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">1043030329744636</string>
+    <string name="fb_login_protocol_scheme">fb1043030329744636</string>
+    <string name="facebook_client_token">0993f9090016daf7c1ca48b9b55234ed</string>
+    <string name="app_name">Salud Amigos Flutter</string>
+</resources>
