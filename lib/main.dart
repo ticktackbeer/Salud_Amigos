@@ -1,8 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+ // await signInWithGoogle();
   runApp(const MyApp());
 }
+
+final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,6 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -27,6 +37,8 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -59,10 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -102,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            const ElevatedButton(onPressed:signInWithGoogle, child: Text("SignIn with Google")),
+
           ],
         ),
       ),
@@ -112,4 +128,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+Future<void> signInWithGoogle() async {
+
+  // Trigger the authentication flow
+  final GoogleSignIn signIn =  GoogleSignIn( signInOption: SignInOption.standard,scopes: ['email']);
+  //signout nur zum testen
+  signIn.signOut();
+  final GoogleSignInAccount? googleUser = await signIn.signIn();
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  await FirebaseAuth.instance.signInWithCredential(credential);
 }
